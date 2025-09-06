@@ -1,7 +1,7 @@
 package Lesson_3;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+
 
 public class Main {
 
@@ -24,29 +24,23 @@ public class Main {
 
         Park[] parksArray = new Park[2];
 
-        parksArray[0] = new Park("Парк отдыха", new ArrayList<Attraction>()
-        {
-            {
-            add(new Attraction("Карусель", LocalTime.of(9, 0), LocalTime.of(18, 0), 15.99));
-            add(new Attraction("Ракушки", LocalTime.of(9, 0), LocalTime.of(18, 0), 10));
-            add(new Attraction("Колесо обозрения", LocalTime.of(9, 0), LocalTime.of(22, 0), 25));
-            }
-        });
+        parksArray[0] = new Park("Парк отдыха", Arrays.asList(
+                new Park.Attraction("Карусель", LocalTime.of(9, 0), LocalTime.of(18, 0), 15.99),
+                new Park.Attraction("Ракушки", LocalTime.of(9, 0), LocalTime.of(18, 0), 10),
+                new Park.Attraction("Колесо обозрения", LocalTime.of(9, 0), LocalTime.of(22, 0), 25)
+        ));
 
-        parksArray[1] = new Park("Парк развлечений", new ArrayList<Attraction>()
-        {
-            {
-                add(new Attraction("Вертелло-Крутилло", LocalTime.of(10, 0), LocalTime.of(17, 0), 2.28));
-                add(new Attraction("Зеркало души", LocalTime.of(9, 0), LocalTime.of(18, 0), 1.90));
-                add(new Attraction("Симулятор жизни", LocalTime.of(9, 0), LocalTime.of(18, 0), 0.90));
-                add(new Attraction("Знаменитость", LocalTime.of(9, 0), LocalTime.of(18, 0), 0.90));
-            }
-        });
+        parksArray[1] = new Park("Парк развлечений", Arrays.asList(
+                new Park.Attraction("Вертелло-Крутилло", LocalTime.of(10, 0), LocalTime.of(17, 0), 2.28),
+                new Park.Attraction("Зеркало души", LocalTime.of(9, 0), LocalTime.of(18, 0), 1.90),
+                new Park.Attraction("Симулятор жизни", LocalTime.of(9, 0), LocalTime.of(18, 0), 0.90),
+                new Park.Attraction("Знаменитость", LocalTime.of(9, 0), LocalTime.of(18, 0), 0.90)
+        ));
 
         for(Park park : parksArray)
         {
             park.printInfo();
-            for (Attraction attraction : park.attractions){
+            for (Park.Attraction attraction : park.attractions){
                 attraction.printInfo();
             }
         }
