@@ -35,7 +35,7 @@ public class Main {
     public static void compareNumbers()
     {
         int a = 5, b = 5;
-        System.out.println(a >= b ? "a >= b" : "a <= b");
+        System.out.println(a >= b ? "a >= b" : "a < b");
     }
     public static boolean rangeOfNumbers(int value_1, int value_2)
     {
