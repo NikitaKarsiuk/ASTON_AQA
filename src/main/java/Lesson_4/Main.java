@@ -1,3 +1,5 @@
+package Lesson_4;
+
 import Lesson_4.Task_1.Bowl;
 import Lesson_4.Task_1.Cat;
 import Lesson_4.Task_2.Circle;
