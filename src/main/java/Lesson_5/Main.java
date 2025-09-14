@@ -29,7 +29,7 @@ public class Main {
         {
             if(array[i].length != 4)
             {
-                throw new MyArraySizeException("Массив должен юыть размером 4x4");
+                throw new MyArraySizeException("Массив должен быть размером 4x4");
             }
         }
 
