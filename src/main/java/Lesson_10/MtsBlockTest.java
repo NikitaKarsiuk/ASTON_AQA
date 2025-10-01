@@ -5,11 +5,15 @@
 
 package Lesson_10;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
+@Listeners({io.qameta.allure.testng.AllureTestNg.class})
 public class MtsBlockTest {
     private WebDriver driver;
     private HomePage homePage;
@@ -42,6 +46,7 @@ public class MtsBlockTest {
     private static final String CARD_FIO_PLACEHOLDER_DATA = "Имя и фамилия на карте";
 
     @BeforeMethod
+    @Step("Инициализация и открытие страницы")
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
@@ -52,6 +57,7 @@ public class MtsBlockTest {
         }
 
         @AfterMethod
+        @Step("Завершение работы")
         public void tearDown() {
             if (driver != null) {
                 driver.quit();
@@ -59,15 +65,21 @@ public class MtsBlockTest {
         }
 
         @Test
+        @Story("Проверка заголовка блока")
+        @Description("Тест проверяет корректность отображения заголовка платежного блока")
         public void testBlockTitle() {
             homePage.verifyBlockTitle();
         }
         @Test
+        @Story("Проверка логотипов платежных систем")
+        @Description("Тест проверяет отображение всех логотипов платежных систем")
         public void testPaymentLogos() {
             homePage.verifyPaymentLogos();
         }
 
         @Test
+        @Story("Проверка ссылки на детали сервиса")
+        @Description("Тест проверяет работу ссылки 'Подробнее о сервисе'")
         public void testDetailsLink() {
             homePage.DetailsLinkIsDisplayed();
             homePage.clickDetailsLink();
@@ -77,14 +89,18 @@ public class MtsBlockTest {
         }
 
         @Test
+        @Story("Проверка формы платежа")
+        @Description("Тест проверяет заполнение формы платежа и отображение iframe")
         public void testPaymentForm() {
 
             homePage.fillPaymentForm(PHONE_DATA, SUM_DATA, EMAIL_DATA);
             homePage.nextButtonIsEnabled();
             homePage.clickNextButton();
-            homePage.paymentIframeIsDisplayed();
+            homePage.paymentFrameIsDisplayed();
         }
         @Test
+        @Story("Проверка полей вкладки 'Услуги связи'")
+        @Description("Тест проверяет placeholder'ы полей во вкладке 'Услуги связи'")
         public void testServicesTabFields() {
             homePage.tabIsEnabled();
             homePage.activeTab(SERVICES_TAB);
@@ -94,6 +110,8 @@ public class MtsBlockTest {
         }
 
         @Test
+        @Story("Проверка полей вкладки 'Домашний интернет'")
+        @Description("Тест проверяет placeholder'ы полей во вкладке 'Домашний интернет'")
         public void testInternetTabFields() {
             homePage.tabIsEnabled();
             homePage.clickTab();
@@ -105,6 +123,8 @@ public class MtsBlockTest {
         }
 
         @Test
+        @Story("Проверка полей вкладки 'Рассрочка'")
+        @Description("Тест проверяет placeholder'ы полей во вкладке 'Рассрочка'")
         public void testPaymentTabFields() {
             homePage.tabIsEnabled();
             homePage.clickTab();
@@ -115,6 +135,8 @@ public class MtsBlockTest {
             homePage.placeholderCheck(EMAIL_FIELD, EMAIL_PLACEHOLDER_DATA);
         }
         @Test
+        @Story("Проверка полей вкладки 'Задолженность'")
+        @Description("Тест проверяет placeholder'ы полей во вкладке 'Задолженность'")
         public void testDebtTabFields() {
         homePage.tabIsEnabled();
         homePage.clickTab();
@@ -125,12 +147,13 @@ public class MtsBlockTest {
         homePage.placeholderCheck(EMAIL_FIELD, EMAIL_PLACEHOLDER_DATA);
     }
         @Test
+        @Story("Проверка платежного iframe")
+        @Description("Тест проверяет корректность отображения данных в платежном iframe")
         public void testPaymentIFrame() {
-
             homePage.fillPaymentForm(PHONE_DATA, SUM_DATA, EMAIL_DATA);
             homePage.nextButtonIsEnabled();
             homePage.clickNextButton();
-            homePage.paymentIframeIsDisplayed();
+            homePage.paymentFrameIsDisplayed();
             homePage.switchToFrame();
             homePage.checkMainSum(SUM_DATA);
             homePage.checkButtonSum(SUM_DATA);

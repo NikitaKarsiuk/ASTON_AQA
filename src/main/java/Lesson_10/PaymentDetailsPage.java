@@ -1,5 +1,6 @@
 package Lesson_10;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -11,8 +12,8 @@ public class PaymentDetailsPage extends BasePage {
         super(driver);
     }
 
+    @Step("Проверка заголовка страницы деталей платежа")
     public void verifyPaymentPageTitle() {
-
         Assert.assertEquals(driver.findElement(PAYMENT_PAGE_TITLE).getText(), "Порядок оплаты и безопасность интернет платежей", "Текст 'Порядок оплаты и безопасность интернет платежей' не найден");
     }
 }
